@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { ToggleSwitch } from './ToggleSwitch';
 
 import '../styles/Form.css';
+import { useInitContext } from '../context';
 
-export const AddForm = ({ add }) => {
+export const AddForm = () => {
+	const { addToOrder } = useInitContext();
+
 	const [isPlayer, togglePlayer] = useState(false);
 	const [creatureName, setCreatureName] = useState('');
 	const [creatureInit, setCreatureInit] = useState(1);
@@ -13,7 +16,9 @@ export const AddForm = ({ add }) => {
 	function addToInit(e) {
 		e.preventDefault();
 
-		add({ name: creatureName, init: creatureInit, HP: creatureHP, isPlayer });
+		addToOrder([
+			{ name: creatureName, init: creatureInit, HP: creatureHP, isPlayer },
+		]);
 
 		setCreatureName('');
 		setCreatureInit(1);

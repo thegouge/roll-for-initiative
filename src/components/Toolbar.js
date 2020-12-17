@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { useInitContext } from '../context';
 import { rollInit } from '../lib/utility';
 
 import '../styles/Toolbar.css';
 
-export const Toolbar = ({ reset, add }) => {
+export const Toolbar = () => {
+	const { addToOrder, resetInit } = useInitContext();
+
 	const [isPrerolling, togglePrerolling] = useState(false);
 	const [numPrerolledMonsters, setNumPrerolledMonsters] = useState(1);
 	const [preRollInitMod, setPreRollInitMod] = useState(0);
@@ -33,7 +36,7 @@ export const Toolbar = ({ reset, add }) => {
 				isPlayer: false,
 			});
 		}
-		add(listToAdd);
+		addToOrder(listToAdd);
 		setNumPrerolledMonsters(1);
 		setPreRollInitMod(0);
 		togglePrerolling(false);
@@ -44,7 +47,7 @@ export const Toolbar = ({ reset, add }) => {
 			<h1>Roll For Initiative!</h1>
 			<nav className="toolbar">
 				<div className="toolbar-btn-container">
-					<button className="reset-btn" onClick={reset}>
+					<button className="reset-btn" onClick={resetInit}>
 						Reset Initiative
 					</button>
 				</div>
