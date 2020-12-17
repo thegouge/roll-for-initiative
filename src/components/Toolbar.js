@@ -81,8 +81,6 @@ export const Toolbar = () => {
 						name="initMod"
 						id="initMod"
 						value={preRollInitMod}
-						min="-5"
-						max="10"
 						onChange={(e) => setPreRollInitMod(parseInt(e.target.value))}
 						onFocus={(e) => e.target.select()}
 					/>
