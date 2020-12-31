@@ -1,7 +1,8 @@
 .list-container {
 	position: relative;
 	padding: 0;
-	width: 60%;
+	padding-top: 10px;
+	width: 80%;
 	margin: auto;
 	display: flex;
 	flex-direction: column;
@@ -12,12 +13,18 @@
 	background: lightblue;
 	z-index: -1;
 	width: 102%;
-	width: 50in;
+	/* width: 50in; */
 	text-align: right;
 	height: 50px;
-	border-radius: 5px;
-	border: 3px solid black;
+	border-radius: var(--border-radius);
+	border: var(--default-border);
 	left: -1.5%;
-	transform: translateY(66px);
+	transform: translateY(47.5px);
 	transition: 0.3s ease-in;
+}
+
+@media only screen and (min-width: 700px) {
+	.list-container {
+		width: 45%;
+	}
 }
