@@ -12,8 +12,10 @@ function App() {
 		<div className="App">
 			<InitProvider>
 				<Toolbar />
-				<AddForm />
-				<InitList />
+				<div className="initiave-tracker">
+					<AddForm />
+					<InitList />
+				</div>
 			</InitProvider>
 		</div>
 	);
