@@ -6,7 +6,13 @@ import { rollInit } from '../lib/utility';
 import '../styles/Toolbar.css';
 
 export const Toolbar = () => {
-	const { addToOrder, resetInit } = useInitContext();
+	const {
+		addToOrder,
+		resetInit,
+		initiative,
+		turnMarkerData,
+		calculateTrackerPosition,
+	} = useInitContext();
 
 	const [isPrerolling, togglePrerolling] = useState(false);
 	const [numPrerolledMonsters, setNumPrerolledMonsters] = useState(1);
@@ -14,6 +20,20 @@ export const Toolbar = () => {
 	const [preRollHP, setPreRollHP] = useState(1);
 
 	const prerollInputRef = useRef(null);
+
+	function advanceTurn() {
+		if (initiative.length === 0) {
+			return;
+		}
+		const { index } = turnMarkerData;
+		let newIndex = index + 1;
+
+		if (newIndex >= initiative.length) {
+			newIndex = 0;
+		}
+
+		calculateTrackerPosition(newIndex);
+	}
 
 	useEffect(() => {
 		if (isPrerolling) {
@@ -47,13 +67,21 @@ export const Toolbar = () => {
 			<h1>Roll For Initiative!</h1>
 			<nav className="toolbar">
 				<div className="toolbar-btn-container">
-					<button className="reset-btn" onClick={resetInit}>
+					<button className="toolbar-btn reset-btn" onClick={resetInit}>
 						Reset Initiative
 					</button>
 				</div>
 
 				<div className="toolbar-btn-container">
-					<button className="preroll-btn" onClick={handlePrerollClick}>
+					<button className="toolbar-btn advance-btn" onClick={advanceTurn}>
+						Finish Turn
+					</button>
+				</div>
+
+				<div className="toolbar-btn-container">
+					<button
+						className="toolbar-btn preroll-btn"
+						onClick={handlePrerollClick}>
 						Batch-add Monsters
 					</button>
 				</div>

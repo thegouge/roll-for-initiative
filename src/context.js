@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 
 import { initiativeSort } from './lib/utility';
 
@@ -8,6 +8,20 @@ let currId = 0;
 
 export const InitProvider = ({ children }) => {
 	const [initiative, setInitiative] = useState([]);
+
+	const turnMarkerRef = useRef(null);
+
+	const [turnMarkerData, setTurnMarkerData] = useState({
+		index: 0,
+		id: initiative[0],
+	});
+
+	function calculateTrackerPosition(index) {
+		setTurnMarkerData({ index: index, id: initiative[index].id });
+		return (turnMarkerRef.current.style.transform = `translateY(${
+			47.5 + 50 * index
+		}px)`);
+	}
 
 	function addToOrder(creaturesToAdd) {
 		setInitiative(
@@ -48,15 +62,26 @@ export const InitProvider = ({ children }) => {
 		setInitiative([]);
 	}
 
+	useEffect(() => {
+		const newIndex = initiative.findIndex(
+			(creature) => creature.id === turnMarkerData.id
+		);
+		if (newIndex === turnMarkerData.index || newIndex <= 0) return;
+		calculateTrackerPosition(newIndex);
+	}, [initiative, turnMarkerData]);
+
 	return (
 		<InitContext.Provider
 			value={{
 				initiative,
+				turnMarkerData,
+				turnMarkerRef,
 				addToOrder,
 				resetInit,
 				removeFromOrder,
 				changeName,
 				changeHP,
+				calculateTrackerPosition,
 			}}>
 			{children}
 		</InitContext.Provider>
