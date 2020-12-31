@@ -1,5 +1,10 @@
 .form-container {
 	margin: auto;
+	margin-top: 0;
 	width: fit-content;
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
+	padding: 10px;
+	position: sticky;
+	border: var(--default-border);
+	border-radius: var(--border-radius);
 }
