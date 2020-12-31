@@ -13,7 +13,6 @@
 	background: lightblue;
 	z-index: -1;
 	width: 102%;
-	/* width: 50in; */
 	text-align: right;
 	height: 50px;
 	border-radius: var(--border-radius);

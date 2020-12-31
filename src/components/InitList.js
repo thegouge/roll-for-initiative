@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import { CreatureTracker } from './CreatureTracker';
 import { useInitContext } from '../context';
@@ -13,9 +13,7 @@ export const InitList = () => {
 			<h2>Initiative List</h2>
 			<div
 				className={`turn-marker ${initiative.length > 0 ? '' : 'hidden'}`}
-				ref={turnMarkerRef}>
-				this is intentional, pls laugh
-			</div>
+				ref={turnMarkerRef}></div>
 			{initiative.map((creature) => (
 				<CreatureTracker key={`${creature.id}`} creature={creature} />
 			))}
