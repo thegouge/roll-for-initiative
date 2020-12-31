@@ -15,7 +15,10 @@ export const InitList = () => {
 				className={`turn-marker ${initiative.length > 0 ? '' : 'hidden'}`}
 				ref={turnMarkerRef}></div>
 			{initiative.map((creature) => (
-				<CreatureTracker key={`${creature.id}`} creature={creature} />
+				<CreatureTracker
+					key={`${creature.isPlayer ? 'player' : 'monster'}-${creature.id}`}
+					creature={creature}
+				/>
 			))}
 		</div>
 	);

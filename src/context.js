@@ -23,7 +23,7 @@ export const InitProvider = ({ children }) => {
 		}
 		setTurnMarkerData({ index: index, id: initiative[index].id });
 		return (turnMarkerRef.current.style.transform = `translateY(${
-			47.5 + 50 * index
+			49.5 + 50 * index
 		}px)`);
 	}
 
