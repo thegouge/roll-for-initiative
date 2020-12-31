@@ -85,44 +85,60 @@ export const Toolbar = () => {
 						Batch-add Monsters
 					</button>
 				</div>
-				<form
-					className={`preroll-form ${isPrerolling ? '' : 'hidden'}`}
-					onSubmit={prerollMonsters}>
-					<button
-						className="close-preroll"
-						onClick={() => togglePrerolling(false)}>
-						<FaTimes />
-					</button>
-					<label htmlFor="numMonsters">How Many Monsters?</label>
-					<input
-						type="number"
-						name="numMonsters"
-						id="numMonsters"
-						ref={prerollInputRef}
-						value={numPrerolledMonsters}
-						onChange={(e) => setNumPrerolledMonsters(parseInt(e.target.value))}
-						onFocus={(e) => e.target.select()}
-					/>
-					<label htmlFor="initMod">Initiative Modifier</label>
-					<input
-						type="number"
-						name="initMod"
-						id="initMod"
-						value={preRollInitMod}
-						onChange={(e) => setPreRollInitMod(parseInt(e.target.value))}
-						onFocus={(e) => e.target.select()}
-					/>
-					<label htmlFor="preRollHP">Max HP</label>
-					<input
-						type="number"
-						name="preRollHP"
-						id="preRollHP"
-						value={preRollHP}
-						onChange={(e) => setPreRollHP(parseInt(e.target.value))}
-						onFocus={(e) => e.target.select()}
-					/>
-					<input type="submit" value="Roll those monsters!" />
-				</form>
+				<div className={`modal ${isPrerolling ? '' : 'hidden'}`}>
+					<form className="preroll-form" onSubmit={prerollMonsters}>
+						<h3>Monster pre-roller</h3>
+						<button
+							className="close-preroll"
+							onClick={() => togglePrerolling(false)}>
+							<FaTimes />
+						</button>{' '}
+						<div className="input-container">
+							<label htmlFor="numMonsters">How Many Monsters?</label>
+							<input
+								className="input preroll-input"
+								type="number"
+								name="numMonsters"
+								id="numMonsters"
+								ref={prerollInputRef}
+								value={numPrerolledMonsters}
+								onChange={(e) =>
+									setNumPrerolledMonsters(parseInt(e.target.value))
+								}
+								onFocus={(e) => e.target.select()}
+							/>
+						</div>
+						<div className="input-container">
+							<label htmlFor="initMod">Initiative Modifier</label>
+							<input
+								className="input preroll-input"
+								type="number"
+								name="initMod"
+								id="initMod"
+								value={preRollInitMod}
+								onChange={(e) => setPreRollInitMod(parseInt(e.target.value))}
+								onFocus={(e) => e.target.select()}
+							/>
+						</div>
+						<div className="input-container">
+							<label htmlFor="preRollHP">Max HP</label>
+							<input
+								className="input preroll-input"
+								type="number"
+								name="preRollHP"
+								id="preRollHP"
+								value={preRollHP}
+								onChange={(e) => setPreRollHP(parseInt(e.target.value))}
+								onFocus={(e) => e.target.select()}
+							/>
+						</div>
+						<input
+							className="preroll-submit"
+							type="submit"
+							value="Roll monsters!"
+						/>
+					</form>
+				</div>
 			</nav>
 		</header>
 	);

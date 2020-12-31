@@ -17,6 +17,19 @@ code {
 		monospace;
 }
 
+.input {
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid gray;
+	margin: 0 5px;
+}
+
+.input:focus {
+	outline: none !important;
+	border: 1px solid black;
+	box-shadow: inset 0 0 5px rgb(122, 121, 121);
+}
+
 .pretty-input {
 	display: block;
 	align-self: center;
@@ -24,8 +37,27 @@ code {
 	border: none;
 	border-bottom: 2px solid black;
 	font-size: 1.1rem;
+	transition: 0.2s;
+}
+
+.pretty-input:focus {
+	outline: none !important;
+	border-bottom: 2px solid #f90;
+	transition: 0.2s;
+	/* box-shadow: inset 0 0 5px black; */
+}
+
+.modal {
+	display: block;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	top: 0;
+	transition: 0.3s;
 }
 
 .hidden {
 	display: none;
+	transition: 0.3s;
 }

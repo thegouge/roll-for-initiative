@@ -1,10 +1,51 @@
 .form-container {
+	box-sizing: border-box;
 	margin: auto;
 	margin-top: 0;
-	width: fit-content;
+	width: 95%;
 	/* margin-bottom: 20px; */
 	padding: 10px;
 	position: sticky;
 	border: var(--default-border);
 	border-radius: var(--border-radius);
+}
+
+.form-input {
+	width: fit-content;
+}
+
+.number-input {
+	display: inline-block;
+}
+
+.add-input {
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid gray;
+	margin: 0 5px;
+}
+
+.add-input[type='number'] {
+	width: 20px;
+}
+
+.add-input[type='submit'] {
+	display: block;
+	margin: auto;
+	width: 50%;
+	font-size: 1.25rem;
+	font-weight: bold;
+	background: rgb(160, 26, 26);
+	color: white;
+	margin-top: 20px;
+	border: 2px solid black;
+}
+
+@media only screen and (min-width: 400px) {
+	.form-container {
+		width: fit-content;
+	}
+	.add-input[type='number'] {
+		width: 45px;
+	}
 }
