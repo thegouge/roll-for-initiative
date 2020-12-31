@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/roll-for-initiative/static/css/main.3a09be91.chunk.css",
+    "main.js": "/roll-for-initiative/static/js/main.8c66870a.chunk.js",
+    "main.js.map": "/roll-for-initiative/static/js/main.8c66870a.chunk.js.map",
+    "runtime-main.js": "/roll-for-initiative/static/js/runtime-main.cfc1c08c.js",
+    "runtime-main.js.map": "/roll-for-initiative/static/js/runtime-main.cfc1c08c.js.map",
+    "static/js/2.c959ddae.chunk.js": "/roll-for-initiative/static/js/2.c959ddae.chunk.js",
+    "static/js/2.c959ddae.chunk.js.map": "/roll-for-initiative/static/js/2.c959ddae.chunk.js.map",
+    "static/js/3.c179d190.chunk.js": "/roll-for-initiative/static/js/3.c179d190.chunk.js",
+    "static/js/3.c179d190.chunk.js.map": "/roll-for-initiative/static/js/3.c179d190.chunk.js.map",
+    "index.html": "/roll-for-initiative/index.html",
+    "static/css/main.3a09be91.chunk.css.map": "/roll-for-initiative/static/css/main.3a09be91.chunk.css.map",
+    "static/js/2.c959ddae.chunk.js.LICENSE.txt": "/roll-for-initiative/static/js/2.c959ddae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cfc1c08c.js",
+    "static/js/2.c959ddae.chunk.js",
+    "static/css/main.3a09be91.chunk.css",
+    "static/js/main.8c66870a.chunk.js"
+  ]
+}
