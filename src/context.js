@@ -17,6 +17,10 @@ export const InitProvider = ({ children }) => {
 	});
 
 	function calculateTrackerPosition(index) {
+		if (initiative.length === 0) {
+			setTurnMarkerData({ index: 0, id: 0 });
+			return;
+		}
 		setTurnMarkerData({ index: index, id: initiative[index].id });
 		return (turnMarkerRef.current.style.transform = `translateY(${
 			47.5 + 50 * index
@@ -60,13 +64,16 @@ export const InitProvider = ({ children }) => {
 
 	function resetInit() {
 		setInitiative([]);
+		setTurnMarkerData({ index: 0, id: 0 });
+		calculateTrackerPosition(0);
 	}
 
 	useEffect(() => {
+		console.log('reloading');
 		const newIndex = initiative.findIndex(
 			(creature) => creature.id === turnMarkerData.id
 		);
-		if (newIndex === turnMarkerData.index || newIndex <= 0) return;
+		if (newIndex === turnMarkerData.index || newIndex < 0) return;
 		calculateTrackerPosition(newIndex);
 	}, [initiative, turnMarkerData]);
 
