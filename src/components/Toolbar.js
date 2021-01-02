@@ -18,6 +18,7 @@ export const Toolbar = () => {
 	const [numPrerolledMonsters, setNumPrerolledMonsters] = useState(1);
 	const [preRollInitMod, setPreRollInitMod] = useState(0);
 	const [preRollHP, setPreRollHP] = useState(1);
+	const [preRollName, setPreRollName] = useState('');
 
 	const prerollInputRef = useRef(null);
 
@@ -50,7 +51,7 @@ export const Toolbar = () => {
 		const listToAdd = [];
 		for (let i = 0; i < numPrerolledMonsters; i++) {
 			listToAdd.push({
-				name: `monster ${i + 1}`,
+				name: `${preRollName === '' ? 'Monster' : preRollName} ${i + 1}`,
 				init: rollInit(preRollInitMod),
 				HP: preRollHP,
 				isPlayer: false,
@@ -59,6 +60,7 @@ export const Toolbar = () => {
 		addToOrder(listToAdd);
 		setNumPrerolledMonsters(1);
 		setPreRollInitMod(0);
+		setPreRollName('');
 		togglePrerolling(false);
 	}
 
@@ -92,7 +94,8 @@ export const Toolbar = () => {
 							className="close-preroll"
 							onClick={() => togglePrerolling(false)}>
 							<FaTimes />
-						</button>{' '}
+						</button>
+
 						<div className="input-container">
 							<label htmlFor="numMonsters">How Many Monsters?</label>
 							<input
@@ -109,7 +112,19 @@ export const Toolbar = () => {
 							/>
 						</div>
 						<div className="input-container">
-							<label htmlFor="initMod">Initiative Modifier</label>
+							<label htmlFor="nameMonster">What you calling them?</label>
+							<input
+								className="input preroll-input preroll-name"
+								type="text"
+								name="monsterName"
+								id="monsterName"
+								value={preRollName}
+								onChange={(e) => setPreRollName(e.target.value)}
+								onFocus={(e) => e.target.select()}
+							/>
+						</div>
+						<div className="input-container">
+							<label htmlFor="initMod">Dex Modifier</label>
 							<input
 								className="input preroll-input"
 								type="number"

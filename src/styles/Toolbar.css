@@ -107,6 +107,10 @@
 	width: 30px;
 }
 
+.preroll-name {
+	width: 100px;
+}
+
 .preroll-submit {
 	display: block;
 	margin: auto;
