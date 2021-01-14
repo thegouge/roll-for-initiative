@@ -71,7 +71,6 @@ export const InitProvider = ({ children }) => {
 	}
 
 	useEffect(() => {
-		console.log('reloading');
 		const newIndex = initiative.findIndex(
 			(creature) => creature.id === turnMarkerData.id
 		);
