@@ -26,21 +26,25 @@ export const AddForm = () => {
 	}
 
 	return (
-		<div className="form-container">
+		<div className="form-container" data-testid="addForm-container">
 			<h2>
-				Add To Initiative{' '}
+				Add To Initiative
 				<ToggleSwitch
 					name="Creature Type"
 					checked={isPlayer}
 					onChange={() => togglePlayer(!isPlayer)}
 				/>
 			</h2>
-			<form className="add-form" onSubmit={addToInit}>
+			<form
+				className="add-form"
+				onSubmit={addToInit}
+				data-testid="addForm-form">
 				<div className="form-input">
-					<label htmlFor="">Name of Creature:</label>
+					<label htmlFor="new-name">Name of Creature:</label>
 					<input
 						className="input add-input"
 						type="text"
+						id="new-name"
 						value={creatureName}
 						onChange={(e) => setCreatureName(e.target.value)}
 						onFocus={(e) => e.target.select()}
@@ -48,10 +52,11 @@ export const AddForm = () => {
 				</div>
 
 				<div className="form-input number-input">
-					<label htmlFor="">Initiative:</label>
+					<label htmlFor="init-roll">Initiative:</label>
 					<input
 						className="input add-input"
 						type="number"
+						id="init-roll"
 						value={creatureInit}
 						onChange={(e) => setCreatureInit(parseInt(e.target.value))}
 						onFocus={(e) => e.target.select()}
@@ -60,10 +65,11 @@ export const AddForm = () => {
 
 				{!isPlayer && (
 					<div className="form-input number-input">
-						<label htmlFor="">HP:</label>
+						<label htmlFor="health">HP:</label>
 						<input
 							className="input add-input"
 							type="number"
+							id="health"
 							value={creatureHP}
 							onChange={(e) => setCreatureHP(parseInt(e.target.value))}
 							onFocus={(e) => e.target.select()}

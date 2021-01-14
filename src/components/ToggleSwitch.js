@@ -12,6 +12,7 @@ export const ToggleSwitch = ({ name, checked, onChange }) => {
 				id={name}
 				checked={checked}
 				onChange={onChange}
+				data-testid="addplayer-type"
 			/>
 			<label className="toggle-switch-label" htmlFor={name}>
 				<span className="toggle-switch-inner" />

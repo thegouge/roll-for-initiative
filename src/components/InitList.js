@@ -9,11 +9,12 @@ export const InitList = () => {
 	const { initiative, turnMarkerRef } = useInitContext();
 
 	return (
-		<div className="list-container">
+		<div className="list-container" data-testid="initList-container">
 			<h2>Initiative List</h2>
 			<div
 				className={`turn-marker ${initiative.length > 0 ? '' : 'hidden'}`}
-				ref={turnMarkerRef}></div>
+				ref={turnMarkerRef}
+				data-testid="turn-marker"></div>
 			{initiative.map((creature) => (
 				<CreatureTracker
 					key={`${creature.isPlayer ? 'player' : 'monster'}-${creature.id}`}
