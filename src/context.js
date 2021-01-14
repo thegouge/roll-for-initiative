@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 
 import { initiativeSort } from './lib/utility';
 
-const InitContext = React.createContext();
+export const InitContext = React.createContext();
+
+export const InitConsumer = InitContext.Consumer;
 
 let currId = 0;
 
