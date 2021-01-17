@@ -8,15 +8,17 @@ export const InitConsumer = InitContext.Consumer;
 
 let currId = 0;
 
-export const InitProvider = ({ children }) => {
-	const [initiative, setInitiative] = useState([]);
-
-	const turnMarkerRef = useRef(null);
-
-	const [turnMarkerData, setTurnMarkerData] = useState({
+export const InitProvider = ({
+	children,
+	defaultInit = [],
+	defaultTurnMarker = {
 		index: 0,
-		id: initiative[0],
-	});
+		id: 0,
+	},
+}) => {
+	const [initiative, setInitiative] = useState(defaultInit);
+	const [turnMarkerData, setTurnMarkerData] = useState(defaultTurnMarker);
+	const turnMarkerRef = useRef(null);
 
 	function calculateTrackerPosition(index) {
 		if (initiative.length === 0) {

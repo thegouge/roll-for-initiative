@@ -34,13 +34,13 @@ export const CreatureTracker = ({ creature }) => {
 			/>
 			{!isPlayer && (
 				<>
-					<label htmlFor="Creature-HP" style={{ fontWeight: 'normal' }}>
+					<label htmlFor={`Creature-HP-${id}`} style={{ fontWeight: 'normal' }}>
 						HP
 					</label>
 					<input
 						type="number"
 						name="Creature-HP"
-						id="Creature-HP"
+						id={`Creature-HP-${id}`}
 						min="0"
 						className="pretty-input creature-hp"
 						value={HP}

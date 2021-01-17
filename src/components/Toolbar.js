@@ -65,7 +65,7 @@ export const Toolbar = () => {
 	}
 
 	return (
-		<header className="init-header">
+		<header className="init-header" data-testid="toolbar-container">
 			<h1>Roll For Initiative!</h1>
 			<nav className="toolbar">
 				<div className="toolbar-btn-container">
@@ -83,16 +83,23 @@ export const Toolbar = () => {
 				<div className="toolbar-btn-container">
 					<button
 						className="toolbar-btn preroll-btn"
-						onClick={handlePrerollClick}>
+						onClick={handlePrerollClick}
+						data-testid="toolbar-batch">
 						Batch-add Monsters
 					</button>
 				</div>
-				<div className={`modal ${isPrerolling ? '' : 'hidden'}`}>
-					<form className="preroll-form" onSubmit={prerollMonsters}>
+				<div
+					className={`modal ${isPrerolling ? '' : 'hidden'}`}
+					data-testid="toolbar-modal">
+					<form
+						className="preroll-form"
+						onSubmit={prerollMonsters}
+						data-testid="toolbar-form">
 						<h3>Monster pre-roller</h3>
 						<button
 							className="close-preroll"
-							onClick={() => togglePrerolling(false)}>
+							onClick={() => togglePrerolling(false)}
+							data-testid="toolbar-close">
 							<FaTimes />
 						</button>
 
@@ -103,6 +110,7 @@ export const Toolbar = () => {
 								type="number"
 								name="numMonsters"
 								id="numMonsters"
+								min="1"
 								ref={prerollInputRef}
 								value={numPrerolledMonsters}
 								onChange={(e) =>
@@ -112,7 +120,7 @@ export const Toolbar = () => {
 							/>
 						</div>
 						<div className="input-container">
-							<label htmlFor="nameMonster">What you calling them?</label>
+							<label htmlFor="monsterName">What you calling them?</label>
 							<input
 								className="input preroll-input preroll-name"
 								type="text"
@@ -142,6 +150,7 @@ export const Toolbar = () => {
 								type="number"
 								name="preRollHP"
 								id="preRollHP"
+								min="1"
 								value={preRollHP}
 								onChange={(e) => setPreRollHP(parseInt(e.target.value))}
 								onFocus={(e) => e.target.select()}
