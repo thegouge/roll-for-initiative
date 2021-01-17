@@ -1,5 +1,4 @@
 import React from 'react';
-import { useInitContext } from '../context';
 
 import '../styles/Tracker.css';
 

@@ -78,7 +78,7 @@ export const InitProvider = ({
 		);
 		if (newIndex === turnMarkerData.index || newIndex < 0) return;
 		calculateTrackerPosition(newIndex);
-	}, [initiative, turnMarkerData]);
+	}, [initiative]);
 
 	return (
 		<InitContext.Provider
