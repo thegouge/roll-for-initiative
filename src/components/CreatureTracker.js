@@ -3,9 +3,13 @@ import { useInitContext } from '../context';
 
 import '../styles/Tracker.css';
 
-export const CreatureTracker = ({ creature }) => {
+export const CreatureTracker = ({
+	creature,
+	changeHP,
+	changeName,
+	removeFromOrder,
+}) => {
 	const { init, name, isPlayer, HP, id } = creature;
-	const { changeHP, changeName, removeFromOrder } = useInitContext();
 
 	function handleHPChange(e) {
 		const newHP = parseInt(e.target.value);

@@ -6,7 +6,13 @@ import { useInitContext } from '../context';
 import '../styles/List.css';
 
 export const InitList = () => {
-	const { initiative, turnMarkerRef } = useInitContext();
+	const {
+		initiative,
+		turnMarkerRef,
+		changeHP,
+		changeName,
+		removeFromOrder,
+	} = useInitContext();
 
 	return (
 		<div className="list-container" data-testid="initList-container">
@@ -19,6 +25,9 @@ export const InitList = () => {
 				<CreatureTracker
 					key={`${creature.isPlayer ? 'player' : 'monster'}-${creature.id}`}
 					creature={creature}
+					changeHP={changeHP}
+					changeName={changeName}
+					removeFromOrder={removeFromOrder}
 				/>
 			))}
 		</div>
