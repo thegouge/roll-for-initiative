@@ -1,4 +1,6 @@
-export function initiativeSort(a, b) {
+import { Creature } from "./types";
+
+export function initiativeSort(a: Creature, b: Creature) {
 	const diff = b.init - a.init;
 	if (diff === 0) {
 		if (a.isPlayer) {
@@ -12,10 +14,10 @@ export function initiativeSort(a, b) {
 	return b.init - a.init;
 }
 
-export function rollDice(d) {
+export function rollDice(d: number) {
 	return 1 + Math.floor(Math.random() * d);
 }
 
-export function rollInit(mod) {
+export function rollInit(mod: number) {
 	return mod + rollDice(20);
 }

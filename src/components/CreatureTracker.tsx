@@ -1,16 +1,23 @@
 import React from 'react';
-
+import { Creature } from '../lib/types';
 import '../styles/Tracker.css';
+
+interface Props {
+	creature: Creature;
+	changeHP: (id: number, hp: number) => void;
+	changeName: (id: number, name: string) => void;
+	removeFromOrder: (id: number) => void;
+}
 
 export const CreatureTracker = ({
 	creature,
 	changeHP,
 	changeName,
 	removeFromOrder,
-}) => {
+}: Props) => {
 	const { init, name, isPlayer, HP, id } = creature;
 
-	function handleHPChange(e) {
+	function handleHPChange(e: any) {
 		const newHP = parseInt(e.target.value);
 
 		if (newHP <= 0) {

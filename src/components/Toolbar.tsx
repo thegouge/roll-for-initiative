@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useInitContext } from '../context';
+import { useInitContext } from '../context/initContext';
+import { Creature } from '../lib/types';
 import { rollInit } from '../lib/utility';
-
 import '../styles/Toolbar.css';
 
 export const Toolbar = () => {
@@ -20,7 +20,7 @@ export const Toolbar = () => {
 	const [preRollHP, setPreRollHP] = useState(1);
 	const [preRollName, setPreRollName] = useState('');
 
-	const prerollInputRef = useRef(null);
+	const prerollInputRef = useRef<HTMLInputElement>(null);
 
 	function advanceTurn() {
 		if (initiative.length === 0) {
@@ -37,7 +37,7 @@ export const Toolbar = () => {
 	}
 
 	useEffect(() => {
-		if (isPrerolling) {
+		if (isPrerolling && prerollInputRef && prerollInputRef.current) {
 			prerollInputRef.current.focus();
 		}
 	}, [isPrerolling]);
@@ -46,15 +46,16 @@ export const Toolbar = () => {
 		togglePrerolling(!isPrerolling);
 	}
 
-	function prerollMonsters(e) {
+	function prerollMonsters(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const listToAdd = [];
+		const listToAdd: Creature[] = [];
 		for (let i = 0; i < numPrerolledMonsters; i++) {
 			listToAdd.push({
 				name: `${preRollName === '' ? 'Monster' : preRollName} ${i + 1}`,
 				init: rollInit(preRollInitMod),
 				HP: preRollHP,
 				isPlayer: false,
+				id: Date.now() + i,
 			});
 		}
 		addToOrder(listToAdd);

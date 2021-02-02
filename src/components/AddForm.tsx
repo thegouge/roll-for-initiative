@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-
+import { useInitContext } from '../context/initContext';
+import { ContextType } from '../lib/types';
+import '../styles/Form.css';
 import { ToggleSwitch } from './ToggleSwitch';
 
-import '../styles/Form.css';
-import { useInitContext } from '../context';
-
 export const AddForm = () => {
-	const { addToOrder } = useInitContext();
+	const { addToOrder }: ContextType = useInitContext();
 
 	const [isPlayer, togglePlayer] = useState(false);
 	const [creatureName, setCreatureName] = useState('');
 	const [creatureInit, setCreatureInit] = useState(1);
 	const [creatureHP, setCreatureHP] = useState(1);
 
-	function addToInit(e) {
+	function addToInit(e: any) {
 		e.preventDefault();
 
 		addToOrder([
-			{ name: creatureName, init: creatureInit, HP: creatureHP, isPlayer },
+			{
+				name: creatureName,
+				init: creatureInit,
+				HP: creatureHP,
+				isPlayer,
+				id: Date.now(),
+			},
 		]);
 
 		setCreatureName('');

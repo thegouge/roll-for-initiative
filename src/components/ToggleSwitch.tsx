@@ -1,8 +1,13 @@
 import React from 'react';
-
 import '../styles/Toggle.css';
 
-export const ToggleSwitch = ({ name, checked, onChange }) => {
+interface Props {
+	name: string;
+	checked: boolean;
+	onChange: () => void;
+}
+
+export const ToggleSwitch = ({ name, checked, onChange }: Props) => {
 	return (
 		<div className="toggle-switch">
 			<input

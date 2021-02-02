@@ -1,9 +1,8 @@
 import React from 'react';
-
-import { CreatureTracker } from './CreatureTracker';
-import { useInitContext } from '../context';
-
+import { useInitContext } from '../context/initContext';
+import { Creature } from '../lib/types';
 import '../styles/List.css';
+import { CreatureTracker } from './CreatureTracker';
 
 export const InitList = () => {
 	const {
@@ -21,7 +20,7 @@ export const InitList = () => {
 				className={`turn-marker ${initiative.length > 0 ? '' : 'hidden'}`}
 				ref={turnMarkerRef}
 				data-testid="turn-marker"></div>
-			{initiative.map((creature) => (
+			{initiative.map((creature: Creature) => (
 				<CreatureTracker
 					key={`${creature.isPlayer ? 'player' : 'monster'}-${creature.id}`}
 					creature={creature}
