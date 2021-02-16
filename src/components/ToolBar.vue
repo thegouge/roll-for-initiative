@@ -1,0 +1,132 @@
+<template>
+  <header class="init-header">
+    <h1>Roll for Initiative!</h1>
+    <nav class="toolbar">
+      <div class="toolbar-btn-container">
+        <button class="toolbar-btn reset-btn">reset initiative</button>
+      </div>
+
+      <div class="toolbar-btn-container">
+        <button class="toolbar-btn advance-btn">Finish Turn</button>
+      </div>
+
+      <div class="toolbar-btn-container">
+        <button class="toolbar-btn preroll-btn" @click="togglePreroll">
+          Batch-add
+        </button>
+      </div>
+      <modal
+        title="Pre Roll Monsters"
+        :isShown="isPrerolling"
+        @close-modal="togglePreroll"
+      >
+        <preroll-form />
+      </modal>
+    </nav>
+  </header>
+</template>
+
+<script>
+import Modal from "./Modal.vue";
+import PrerollForm from "./PrerollForm.vue";
+export default {
+  components: { Modal, PrerollForm },
+  data() {
+    return { isPrerolling: false };
+  },
+  methods: {
+    togglePreroll() {
+      this.isPrerolling = !this.isPrerolling;
+    }
+  }
+};
+</script>
+
+<style>
+.init-header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  background: lightslategrey;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+}
+
+.toolbar-btn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: 0.5em 1em 0.55em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #f78d1d;
+  background: linear-gradient(#faa51a, #f47a20);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#faa51a),
+    to(#f47a20)
+  );
+  background: -moz-linear-gradient(top, #faa51a, #f47a20);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.toolbar-btn:hover {
+  text-decoration: none;
+
+  background: #f47c20;
+  background: linear-gradient(#f88e11, #f06015);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#f88e11),
+    to(#f06015)
+  );
+  background: -moz-linear-gradient(top, #f88e11, #f06015);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.toolbar-btn:active {
+  position: relative;
+  top: 1px;
+
+  color: #fcd3a5;
+  background: linear-gradient(#f47a20, #faa51a);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#f47a20),
+    to(#faa51a)
+  );
+  background: -moz-linear-gradient(top, #f47a20, #faa51a);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+@media only screen and (min-width: 400px) {
+  .toolbar {
+    width: 400px;
+  }
+}
+</style>
