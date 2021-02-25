@@ -59,20 +59,41 @@
 </template>
 
 <script>
+import { rollInit } from "../lib/utility";
+import { ref } from "vue";
+import { useStore } from "vuex";
 export default {
-  data() {
-    return {
-      numPrerolledMonsters: 1,
-      preRollInitMod: 0,
-      preRollHP: 1,
-      preRollName: ""
-    };
-  },
-  methods: {
-    preRollMonsters(e) {
-      e.preventDefault();
-      console.log("submit");
+  setup() {
+    const store = useStore();
+    const numPrerolledMonsters = ref(1);
+    const preRollInitMod = ref(0);
+    const preRollHP = ref(1);
+    const preRollName = ref("");
+
+    function preRollMonsters() {
+      console.log(numPrerolledMonsters);
+      const creaturesToAdd = [];
+      for (let i = 0; i < numPrerolledMonsters.value; i++) {
+        creaturesToAdd.push({
+          name: `${
+            preRollName.value === "" ? "Monster" : preRollName.value
+          } ${i + 1}`,
+          init: rollInit(preRollInitMod.value),
+          HP: preRollHP.value,
+          isPlayer: false,
+          id: Date.now() + i
+        });
+      }
+      store.commit("addToOrder", { creaturesToAdd });
     }
+
+    return {
+      numPrerolledMonsters,
+      preRollInitMod,
+      preRollHP,
+      preRollName,
+      preRollMonsters
+    };
   }
 };
 </script>
