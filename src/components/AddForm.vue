@@ -72,11 +72,13 @@ export default {
     const store = useStore();
 
     const addToInit = () => {
+      const newName =
+        creatureName.value === "" ? "monster" : creatureName.value;
       store.commit("addToOrder", {
         creaturesToAdd: [
           {
             isPlayer: isPlayer.value,
-            name: creatureName.value,
+            name: newName,
             init: creatureInit.value,
             HP: creatureHP.value,
             id: Date.now()
