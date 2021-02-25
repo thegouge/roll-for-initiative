@@ -25,8 +25,8 @@ export default {
     const store = useStore();
 
     return {
-      initiative: computed(() => store.state.initiative),
-      turnMarkerPos: computed(() => store.getters.turnMarkerPosition)
+      initiative: computed(() => store.state.init.initiative),
+      turnMarkerPos: computed(() => store.getters["init/turnMarkerPosition"])
     };
   }
 };
