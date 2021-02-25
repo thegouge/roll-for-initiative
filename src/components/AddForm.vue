@@ -73,7 +73,11 @@ export default {
 
     const addToInit = () => {
       const newName =
-        creatureName.value === "" ? "monster" : creatureName.value;
+        creatureName.value === ""
+          ? isPlayer.value
+            ? "player"
+            : "monster"
+          : creatureName.value;
       store.commit("addToOrder", {
         creaturesToAdd: [
           {
@@ -141,7 +145,7 @@ export default {
   width: 50%;
   font-size: 1.25rem;
   font-weight: bold;
-  background: rgb(160, 26, 26);
+  background: #f90;
   color: white;
   margin-top: 20px;
   border: 2px solid black;
