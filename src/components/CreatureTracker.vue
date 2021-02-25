@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="`initCreature ${creature.isPlayer ? 'player' : 'creature'}`"
+    :class="`init-creature ${creature.isPlayer ? 'player' : 'creature'}`"
     :data-testid="`creature-${creature.isPlayer ? 'pc' : 'npc'}`"
   >
-    <div className="init-number" data-testid="creature-init">
+    <div class="init-number" data-testid="creature-init">
       {{ creature.init }}
     </div>
     <input
@@ -14,30 +14,45 @@
       @change="(e) => changeName(creature.id, e.target.value)"
       data-testid="creature-name"
     />
-    <div v-if="isPlayer">
-      <label
-        :htmlFor="`Creature-HP-${creature.id}`"
-        style="font-weight: normal"
-      >
-        HP
-      </label>
-      <input
-        type="number"
-        name="Creature-HP"
-        :id="`Creature-HP-${creature.id}`"
-        min="0"
-        class="pretty-input creature-hp"
-        :value="creature.HP"
-        @change="handleHPChange"
-      />
-    </div>
+    <label
+      v-if="!creature.isPlayer"
+      :for="`Creature-HP-${creature.id}`"
+      style="font-weight: normal"
+    >
+      HP
+    </label>
+    <input
+      v-if="!creature.isPlayer"
+      type="number"
+      name="Creature-HP"
+      :id="`Creature-HP-${creature.id}`"
+      min="0"
+      class="pretty-input creature-hp"
+      :value="creature.HP"
+      @change="handleHPChange"
+    />
   </div>
 </template>
 
 <script>
+import { useStore } from "vuex";
 export default {
-  props: ["creature"],
-  methods: { handleHPChange() {}, changeName() {} }
+  props: { creature: { type: Object, required: true } },
+  setup() {
+    const store = useStore();
+
+    function handleHPChange(id, newHP) {
+      if (newHP <= 0) {
+        return store.commit("removeFromOrder", id);
+      }
+      store.commit("changeAspect", { id, HP: newHP });
+    }
+    function changeName(id, newName) {
+      store.commit("changeAspect", { id, name: newName });
+    }
+
+    return { handleHPChange, changeName };
+  }
 };
 </script>
 

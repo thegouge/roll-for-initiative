@@ -36,6 +36,7 @@ export default {
   top: 0;
   transition: 0.3s;
 }
+
 .modal-interior {
   position: relative;
   width: 50%;

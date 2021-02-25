@@ -35,7 +35,7 @@
         />
       </div>
 
-      <div v-if="isPlayer" class="form-input number-input">
+      <div v-if="!isPlayer" class="form-input number-input">
         <label for="health">HP:</label>
         <input
           class="input add-input"
@@ -71,18 +71,23 @@ export default {
 
     const store = useStore();
 
-    const addToInit = () =>
+    const addToInit = () => {
       store.commit("addToOrder", {
         creaturesToAdd: [
           {
-            isPlayer,
-            name: creatureName,
-            init: creatureInit,
-            HP: creatureHP,
+            isPlayer: isPlayer.value,
+            name: creatureName.value,
+            init: creatureInit.value,
+            HP: creatureHP.value,
             id: Date.now()
           }
         ]
       });
+      creatureName.value = "";
+      creatureInit.value = 1;
+      creatureHP.value = 1;
+      isPlayer.value = false;
+    };
 
     return {
       creatureName,

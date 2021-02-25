@@ -1,8 +1,10 @@
 <template>
   <div class="initiative-tracker">
     <tool-bar />
-    <add-form />
-    <init-list />
+    <div class="initiative-tracker">
+      <add-form />
+      <init-list />
+    </div>
   </div>
 </template>
 

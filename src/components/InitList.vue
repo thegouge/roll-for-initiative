@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { useStore } from "vuex";
 import CreatureTracker from "./CreatureTracker.vue";
 export default {
@@ -24,8 +25,8 @@ export default {
     const store = useStore();
 
     return {
-      initiative: store.state.initiative,
-      turnMarkerPos: store.getters.turnMarkerPosition
+      initiative: computed(() => store.state.initiative),
+      turnMarkerPos: computed(() => store.getters.turnMarkerPosition)
     };
   }
 };
